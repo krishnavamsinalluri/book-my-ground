@@ -65,7 +65,7 @@ export class BookingModalComponent implements OnChanges {
       `Price: ₹${this.ground.pricePerHour}\nCustomer: ${v.customerName}\n` +
       `Phone: ${v.phone}\nPlayers: ${v.players}\n\nPlease confirm my booking.`
     );
-    window.open(`https://wa.me/919999999999?text=${msg}`, '_blank');
+    window.open(`https://wa.me/919573660370?text=${msg}`, '_blank');
     this.close.emit();
   }
 }
