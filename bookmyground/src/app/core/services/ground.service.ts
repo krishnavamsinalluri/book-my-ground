@@ -132,6 +132,21 @@ export class GroundService {
   constructor(private storage: StorageService) {
     if (!this.storage.get<Ground[]>(GROUNDS_KEY)) {
       this.storage.set(GROUNDS_KEY, SAMPLE_GROUNDS);
+    } else {
+      // Patch any broken image URLs in existing LocalStorage data
+      const IMAGE_PATCHES: Record<string, string> = {
+        '5': 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&q=80',
+        '6': 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=800&q=80'
+      };
+      const grounds = this.storage.get<Ground[]>(GROUNDS_KEY)!;
+      let patched = false;
+      grounds.forEach(g => {
+        if (IMAGE_PATCHES[g.id] && g.image !== IMAGE_PATCHES[g.id]) {
+          g.image = IMAGE_PATCHES[g.id];
+          patched = true;
+        }
+      });
+      if (patched) this.storage.set(GROUNDS_KEY, grounds);
     }
   }
 
