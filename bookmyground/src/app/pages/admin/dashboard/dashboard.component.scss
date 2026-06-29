@@ -1,0 +1,70 @@
+.admin-page { padding: 100px 20px 60px; max-width: 1200px; margin: 0 auto; }
+
+.admin-header {
+  display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+  margin-bottom: 32px;
+  .admin-title { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1.6rem; color: #212529; margin: 0; i { color: #198754; } }
+  .admin-sub { color: #6c757d; margin: 4px 0 0; font-size: 0.88rem; }
+}
+
+.stat-card {
+  background: #fff; border-radius: 18px; padding: 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+  display: flex; flex-direction: column; gap: 4px; position: relative; overflow: hidden;
+  &::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; border-radius: 4px 0 0 4px; }
+  &.green::before { background: #198754; }
+  &.teal::before { background: #20c997; }
+  &.red::before { background: #dc3545; }
+  &.amber::before { background: #ffc107; }
+  .stat-icon { font-size: 1.5rem; margin-bottom: 8px; }
+  &.green .stat-icon { color: #198754; }
+  &.teal .stat-icon { color: #20c997; }
+  &.red .stat-icon { color: #dc3545; }
+  &.amber .stat-icon { color: #ffc107; }
+  .stat-val { font-family: 'Poppins', sans-serif; font-size: 2rem; font-weight: 800; color: #212529; line-height: 1; }
+  .stat-label { font-size: 0.82rem; color: #6c757d; font-weight: 500; }
+}
+
+.revenue-banner {
+  background: linear-gradient(135deg, #198754, #0d5c38);
+  border-radius: 18px; padding: 24px 28px;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+  .rev-icon { width: 52px; height: 52px; background: rgba(255,255,255,0.15); border-radius: 14px; display: flex; align-items: center; justify-content: center; i { color: #fff; font-size: 1.5rem; } }
+  .rev-label { color: rgba(255,255,255,0.7); font-size: 0.82rem; }
+  .rev-value { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1.8rem; color: #fff; }
+  .btn-outline-custom { border-color: rgba(255,255,255,0.5) !important; color: #fff !important; &:hover { background: rgba(255,255,255,0.15) !important; } }
+}
+
+.admin-card {
+  background: #fff; border-radius: 18px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+  .admin-card-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 18px 20px; border-bottom: 1px solid #f0f0f0;
+    h5 { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.95rem; color: #212529; margin: 0; i { color: #198754; } }
+    .view-all { color: #198754; font-size: 0.82rem; font-weight: 600; text-decoration: none; &:hover { text-decoration: underline; } }
+  }
+  .admin-card-body { padding: 8px 0; }
+}
+
+.recent-item {
+  display: flex; align-items: center; gap: 12px; padding: 12px 20px;
+  transition: background 0.2s;
+  &:hover { background: #f8f9fa; }
+  .recent-img { width: 42px; height: 42px; border-radius: 10px; object-fit: cover; flex-shrink: 0; }
+  .recent-info { flex: 1; min-width: 0; }
+  .recent-name { font-weight: 600; font-size: 0.88rem; color: #212529; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .recent-sub { font-size: 0.78rem; color: #6c757d; }
+  .status-dot { width: 10px; height: 10px; border-radius: 50%; background: #dc3545; flex-shrink: 0; &.active { background: #198754; } }
+}
+
+.booking-item {
+  display: flex; align-items: center; gap: 12px; padding: 12px 20px;
+  transition: background 0.2s;
+  &:hover { background: #f8f9fa; }
+  .booking-icon { width: 36px; height: 36px; background: #f0fdf4; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; i { color: #198754; font-size: 1.1rem; } }
+  .booking-info { flex: 1; min-width: 0; }
+  .booking-name { font-weight: 600; font-size: 0.88rem; color: #212529; }
+  .booking-sub { font-size: 0.76rem; color: #6c757d; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .booking-price { font-weight: 700; font-size: 0.9rem; color: #198754; flex-shrink: 0; }
+}
+
+.empty-state { text-align: center; padding: 24px; color: #6c757d; font-size: 0.85rem; }

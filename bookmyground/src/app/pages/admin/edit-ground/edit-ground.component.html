@@ -1,0 +1,85 @@
+<div class="page-enter admin-page">
+  <div class="admin-header">
+    <div>
+      <h2 class="admin-title"><i class="bi bi-pencil-square me-2"></i>Edit Ground</h2>
+      <p class="admin-sub">Update ground details</p>
+    </div>
+    <a routerLink="/admin/grounds" class="btn-outline-custom"><i class="bi bi-arrow-left me-1"></i>Back</a>
+  </div>
+
+  <div class="not-found-wrap" *ngIf="notFound">
+    <i class="bi bi-exclamation-triangle"></i><h5>Ground not found</h5>
+    <a routerLink="/admin/grounds" class="btn-primary-custom mt-3">Back to Grounds</a>
+  </div>
+
+  <div class="success-banner" *ngIf="saved">
+    <i class="bi bi-check-circle-fill me-2"></i>Ground updated successfully! Redirecting...
+  </div>
+
+  <div class="form-card" *ngIf="!notFound">
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="row g-4">
+        <div class="col-md-6">
+          <label class="form-label-custom">Ground Name *</label>
+          <input type="text" formControlName="name" class="form-control-modern w-100" />
+          <div class="field-error" *ngIf="form.get('name')?.touched && form.get('name')?.errors?.['required']">Required</div>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label-custom">City *</label>
+          <input type="text" formControlName="city" class="form-control-modern w-100" />
+        </div>
+        <div class="col-12">
+          <label class="form-label-custom">Address *</label>
+          <input type="text" formControlName="address" class="form-control-modern w-100" />
+        </div>
+        <div class="col-12">
+          <label class="form-label-custom">Description *</label>
+          <textarea formControlName="description" class="form-control-modern w-100" rows="3"></textarea>
+        </div>
+        <div class="col-12">
+          <label class="form-label-custom">Image URL *</label>
+          <input type="url" formControlName="image" class="form-control-modern w-100" />
+          <div class="img-preview" *ngIf="form.get('image')?.value">
+            <img [src]="form.get('image')?.value" alt="Preview" />
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label-custom">Price Per Hour (₹)</label>
+          <input type="number" formControlName="pricePerHour" class="form-control-modern w-100" min="100" />
+        </div>
+        <div class="col-md-4">
+          <label class="form-label-custom">Rating (1–5)</label>
+          <input type="number" formControlName="rating" class="form-control-modern w-100" min="1" max="5" step="0.1" />
+        </div>
+        <div class="col-md-4">
+          <label class="form-label-custom">Available</label>
+          <select formControlName="available" class="form-control-modern w-100">
+            <option [ngValue]="true">Yes – Available</option>
+            <option [ngValue]="false">No – Unavailable</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label-custom">Opening Time</label>
+          <input type="text" formControlName="openingTime" class="form-control-modern w-100" />
+        </div>
+        <div class="col-md-6">
+          <label class="form-label-custom">Closing Time</label>
+          <input type="text" formControlName="closingTime" class="form-control-modern w-100" />
+        </div>
+        <div class="col-12">
+          <label class="form-label-custom">Facilities</label>
+          <div class="facilities-picker">
+            <label class="fac-check" *ngFor="let f of allFacilities" [class.selected]="isFacilitySelected(f)" (click)="toggleFacility(f)">
+              <input type="checkbox" [checked]="isFacilitySelected(f)" hidden /><i class="bi bi-check2 me-1"></i>{{ f }}
+            </label>
+          </div>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn-primary-custom save-btn">
+            <i class="bi bi-floppy me-2"></i>Update Ground
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

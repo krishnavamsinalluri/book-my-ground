@@ -1,0 +1,47 @@
+<div class="ground-card card-modern">
+  <!-- Image -->
+  <div class="card-image-wrap">
+    <img [src]="ground.image" [alt]="ground.name" class="card-img" loading="lazy" />
+    <div class="card-overlay"></div>
+    <span class="avail-badge" [class.badge-available]="ground.available" [class.badge-unavailable]="!ground.available">
+      <i class="bi" [class.bi-check-circle-fill]="ground.available" [class.bi-x-circle-fill]="!ground.available"></i>
+      {{ ground.available ? 'Available' : 'Unavailable' }}
+    </span>
+    <div class="price-badge">₹{{ ground.pricePerHour | number }}<span>/hr</span></div>
+  </div>
+
+  <!-- Body -->
+  <div class="card-body-custom">
+    <div class="d-flex align-items-start justify-content-between mb-1">
+      <h5 class="ground-name">{{ ground.name }}</h5>
+    </div>
+
+    <div class="rating-row mb-2">
+      <span class="stars">
+        <i class="bi bi-star-fill" *ngFor="let s of stars"></i>
+        <i class="bi bi-star" *ngFor="let s of emptyStars"></i>
+      </span>
+      <span class="rating-val">{{ ground.rating }}</span>
+    </div>
+
+    <div class="location mb-2">
+      <i class="bi bi-geo-alt-fill"></i>{{ ground.city }} &middot; {{ ground.address | slice:0:35 }}...
+    </div>
+
+    <div class="facilities-row mb-3">
+      <span class="fac-tag" *ngFor="let f of ground.facilities.slice(0,4)">
+        <i class="bi" [class]="facilityIcons[f] || 'bi-check'"></i> {{ f }}
+      </span>
+      <span class="fac-tag more" *ngIf="ground.facilities.length > 4">+{{ ground.facilities.length - 4 }}</span>
+    </div>
+
+    <div class="card-actions">
+      <a [routerLink]="['/grounds', ground.id]" class="btn-outline-custom btn-sm-custom">
+        <i class="bi bi-eye me-1"></i>View Details
+      </a>
+      <button (click)="bookNow.emit(ground)" class="btn-primary-custom btn-sm-custom" [disabled]="!ground.available">
+        <i class="bi bi-calendar-check me-1"></i>Book Now
+      </button>
+    </div>
+  </div>
+</div>

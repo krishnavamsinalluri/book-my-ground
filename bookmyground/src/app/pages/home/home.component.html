@@ -1,0 +1,147 @@
+<div class="page-enter">
+
+<!-- ═══════════════════════════════════════ HERO ═══════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content container">
+    <div class="hero-badge"><i class="bi bi-geo-alt-fill me-1"></i>Available in 8+ Cities</div>
+    <h1 class="hero-title">Book Premium Cricket<br><span>Grounds Near You</span></h1>
+    <p class="hero-subtitle">Find, Compare and Book the Best Cricket Grounds in Seconds.</p>
+    <div class="hero-btns">
+      <a routerLink="/grounds" class="btn-primary-custom hero-btn">
+        <i class="bi bi-calendar-check me-2"></i>Book Now
+      </a>
+      <a routerLink="/grounds" class="btn-outline-hero hero-btn">
+        <i class="bi bi-compass me-2"></i>Explore Grounds
+      </a>
+    </div>
+    <!-- Stats bar -->
+    <div class="hero-stats">
+      <div class="stat-item" *ngFor="let s of stats">
+        <div class="stat-val">{{ s.value }}</div>
+        <div class="stat-label">{{ s.label }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">
+    <i class="bi bi-chevron-double-down"></i>
+  </div>
+</section>
+
+<!-- ════════════════════════════ FEATURED GROUNDS ════════════════════════════ -->
+<section class="section-pad bg-white">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-badge">Featured</span>
+      <h2 class="section-title">Premium Cricket <span>Grounds</span></h2>
+      <p class="section-subtitle">Handpicked verified grounds with top-class facilities and professional turf.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6" *ngFor="let g of featuredGrounds">
+        <app-ground-card [ground]="g" (bookNow)="openBooking($event)" />
+      </div>
+    </div>
+    <div class="text-center mt-5">
+      <a routerLink="/grounds" class="btn-primary-custom">
+        <i class="bi bi-grid me-2"></i>View All Grounds
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ WHY CHOOSE US ════════════════════════════════ -->
+<section class="section-pad features-section">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-badge">Why Us</span>
+      <h2 class="section-title">Why Choose <span>BookMyGround</span></h2>
+      <p class="section-subtitle">We make booking cricket grounds effortless, reliable and affordable.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-3 col-md-6" *ngFor="let f of features">
+        <div class="feature-card">
+          <div class="feature-icon-wrap">
+            <i class="bi" [class]="f.icon"></i>
+          </div>
+          <h5 class="feature-title">{{ f.title }}</h5>
+          <p class="feature-desc">{{ f.desc }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ HOW IT WORKS ════════════════════════════════ -->
+<section class="section-pad bg-white">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-badge">Process</span>
+      <h2 class="section-title">How It <span>Works</span></h2>
+      <p class="section-subtitle">Book your perfect cricket ground in 3 easy steps.</p>
+    </div>
+    <div class="row g-4 justify-content-center">
+      <div class="col-lg-4 col-md-6" *ngFor="let step of steps; let i = index">
+        <div class="step-card">
+          <div class="step-number">{{ step.num }}</div>
+          <div class="step-icon-wrap">
+            <i class="bi" [class]="step.icon"></i>
+          </div>
+          <h5 class="step-title">{{ step.title }}</h5>
+          <p class="step-desc">{{ step.desc }}</p>
+          <div class="step-arrow" *ngIf="i < steps.length - 1">
+            <i class="bi bi-arrow-right"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════════ TESTIMONIALS ═══════════════════════════════ -->
+<section class="section-pad testimonials-section">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-badge">Reviews</span>
+      <h2 class="section-title">What Players <span>Say</span></h2>
+      <p class="section-subtitle">Real reviews from our happy cricket community.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6" *ngFor="let t of testimonials">
+        <div class="testimonial-card">
+          <div class="quote-icon"><i class="bi bi-quote"></i></div>
+          <p class="testimonial-text">{{ t.text }}</p>
+          <div class="testimonial-stars">
+            <i class="bi bi-star-fill" *ngFor="let s of [1,2,3,4,5]"></i>
+          </div>
+          <div class="testimonial-author">
+            <img [src]="t.avatar" [alt]="t.name" class="author-avatar" />
+            <div>
+              <div class="author-name">{{ t.name }}</div>
+              <div class="author-city"><i class="bi bi-geo-alt me-1"></i>{{ t.city }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ CTA BANNER ════════════════════════════════════ -->
+<section class="cta-section">
+  <div class="container text-center">
+    <h2 class="cta-title">Ready to Play? Book Your Ground Now!</h2>
+    <p class="cta-sub">Join 10,000+ cricket enthusiasts who book with BookMyGround every month.</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap">
+      <a routerLink="/grounds" class="btn-primary-custom cta-btn">
+        <i class="bi bi-calendar-check me-2"></i>Book a Ground
+      </a>
+      <a href="https://wa.me/919999999999" target="_blank" class="whatsapp-cta-btn">
+        <i class="bi bi-whatsapp me-2"></i>Chat on WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<app-booking-modal [ground]="selectedGround" [visible]="showModal" (close)="closeModal()" />

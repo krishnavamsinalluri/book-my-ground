@@ -1,0 +1,104 @@
+<div class="page-enter">
+
+<!-- Page Header -->
+<div class="page-header">
+  <div class="page-header-overlay"></div>
+  <div class="container position-relative">
+    <h1 class="page-header-title">Cricket Grounds</h1>
+    <p class="page-header-sub">Find and book premium cricket grounds across India</p>
+  </div>
+</div>
+
+<div class="container grounds-container">
+  <div class="row g-4">
+
+    <!-- ── Sidebar Filters ── -->
+    <div class="col-lg-3">
+      <div class="filter-card">
+        <div class="filter-header">
+          <h6 class="filter-title"><i class="bi bi-funnel-fill me-2"></i>Filters</h6>
+          <button class="clear-btn" (click)="clearFilters()">Clear All</button>
+        </div>
+
+        <!-- Search -->
+        <div class="filter-group">
+          <label>Search</label>
+          <div class="search-input-wrap">
+            <i class="bi bi-search"></i>
+            <input type="text" [(ngModel)]="search" (ngModelChange)="applyFilters()" placeholder="Ground or city..." class="filter-input" />
+          </div>
+        </div>
+
+        <!-- City -->
+        <div class="filter-group">
+          <label>City</label>
+          <select [(ngModel)]="cityFilter" (ngModelChange)="applyFilters()" class="filter-input">
+            <option value="">All Cities</option>
+            <option [value]="c" *ngFor="let c of cities">{{ c }}</option>
+          </select>
+        </div>
+
+        <!-- Sort -->
+        <div class="filter-group">
+          <label>Sort By</label>
+          <select [(ngModel)]="sortBy" (ngModelChange)="applyFilters()" class="filter-input">
+            <option value="newest">Newest</option>
+            <option value="price_asc">Price: Low to High</option>
+            <option value="price_desc">Price: High to Low</option>
+            <option value="rating">Highest Rated</option>
+          </select>
+        </div>
+
+        <!-- Min Rating -->
+        <div class="filter-group">
+          <label>Minimum Rating</label>
+          <div class="rating-filter">
+            <button class="rating-btn" *ngFor="let r of [0,3,4,4.5]" [class.active]="minRating === r" (click)="minRating = r; applyFilters()">
+              {{ r === 0 ? 'All' : r + '★+' }}
+            </button>
+          </div>
+        </div>
+
+        <!-- Available Only -->
+        <div class="filter-group">
+          <label class="toggle-label">
+            <div class="toggle-wrap">
+              <input type="checkbox" [(ngModel)]="availableOnly" (ngModelChange)="applyFilters()" />
+              <span class="toggle-slider"></span>
+            </div>
+            Available Only
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Grounds Grid ── -->
+    <div class="col-lg-9">
+      <div class="results-bar">
+        <span class="results-count">
+          <strong>{{ filtered.length }}</strong> grounds found
+          <span *ngIf="cityFilter"> in {{ cityFilter }}</span>
+        </span>
+      </div>
+
+      <!-- No results -->
+      <div class="no-results" *ngIf="filtered.length === 0">
+        <i class="bi bi-search"></i>
+        <h5>No grounds found</h5>
+        <p>Try adjusting your filters or search query.</p>
+        <button class="btn-primary-custom" (click)="clearFilters()">Clear Filters</button>
+      </div>
+
+      <div class="row g-4" *ngIf="filtered.length > 0">
+        <div class="col-md-6 col-xl-4" *ngFor="let g of filtered">
+          <app-ground-card [ground]="g" (bookNow)="openBooking($event)" />
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div>
+
+<app-booking-modal [ground]="selectedGround" [visible]="showModal" (close)="closeModal()" />

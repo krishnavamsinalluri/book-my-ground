@@ -1,0 +1,63 @@
+.admin-page { padding: 100px 20px 60px; max-width: 1200px; margin: 0 auto; }
+
+.admin-header {
+  display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px; margin-bottom: 28px;
+  .admin-title { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1.6rem; color: #212529; margin: 0; i { color: #198754; } }
+  .admin-sub { color: #6c757d; font-size: 0.88rem; margin: 4px 0 0; }
+}
+
+.table-card {
+  background: #fff; border-radius: 18px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+}
+
+.admin-table {
+  width: 100%; border-collapse: collapse;
+  thead tr { background: #f8f9fa; }
+  th { padding: 14px 16px; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.8rem; color: #6c757d; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
+  td { padding: 14px 16px; border-bottom: 1px solid #f0f0f0; vertical-align: middle; font-size: 0.88rem; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover td { background: #fafafa; }
+}
+
+.ground-cell { display: flex; align-items: center; gap: 12px;
+  .ground-thumb { width: 44px; height: 44px; border-radius: 10px; object-fit: cover; flex-shrink: 0; }
+  .ground-cell-name { font-weight: 700; color: #212529; font-size: 0.88rem; }
+  .ground-cell-id { font-size: 0.73rem; color: #9ca3af; font-family: monospace; }
+}
+
+.location-cell { display: flex; align-items: center; gap: 5px; color: #374151; i { color: #198754; } }
+.price-cell { font-weight: 700; color: #198754; }
+.rating-cell { display: inline-flex; align-items: center; gap: 4px; font-weight: 600; color: #374151; i { color: #ffc107; } }
+
+.status-toggle {
+  padding: 5px 14px; border-radius: 50px; font-size: 0.76rem; font-weight: 700; border: none; cursor: pointer; transition: all 0.25s;
+  background: #fee2e2; color: #991b1b;
+  &.active { background: #d1fae5; color: #065f46; }
+  &:hover { opacity: 0.8; transform: scale(0.97); }
+}
+
+.actions-cell { display: flex; gap: 6px; }
+
+.action-btn {
+  width: 34px; height: 34px; border-radius: 9px; border: none; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center; font-size: 0.85rem;
+  text-decoration: none; transition: all 0.2s;
+  &.view { background: #f0fdf4; color: #198754; &:hover { background: #198754; color: #fff; } }
+  &.edit { background: #eff6ff; color: #2563eb; &:hover { background: #2563eb; color: #fff; } }
+  &.delete { background: #fee2e2; color: #dc3545; &:hover { background: #dc3545; color: #fff; } }
+}
+
+.empty-state { padding: 40px; text-align: center; color: #6c757d; a { color: #198754; font-weight: 600; } }
+
+.confirm-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1040; }
+.confirm-dialog {
+  position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  background: #fff; border-radius: 20px; padding: 32px; text-align: center; z-index: 1050;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.2); width: min(380px, 90vw);
+  .confirm-icon { width: 60px; height: 60px; background: #fee2e2; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; i { font-size: 1.5rem; color: #dc3545; } }
+  h5 { font-family: 'Poppins', sans-serif; font-weight: 800; color: #212529; margin-bottom: 8px; }
+  p { color: #6c757d; font-size: 0.88rem; margin-bottom: 24px; }
+  .confirm-actions { display: flex; gap: 10px; justify-content: center; }
+  .btn-cancel { padding: 10px 24px; border: 2px solid #e9ecef; border-radius: 50px; background: #fff; color: #374151; font-weight: 600; cursor: pointer; transition: all 0.2s; &:hover { background: #f8f9fa; } }
+  .btn-delete { padding: 10px 24px; border: none; border-radius: 50px; background: #dc3545; color: #fff; font-weight: 600; cursor: pointer; transition: all 0.2s; &:hover { background: #b02a37; } }
+}

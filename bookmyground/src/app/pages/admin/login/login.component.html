@@ -1,0 +1,40 @@
+<div class="login-page">
+  <div class="login-card">
+    <div class="login-logo">
+      <i class="bi bi-cricket"></i>
+    </div>
+    <h2 class="login-title">Admin Login</h2>
+    <p class="login-sub">BookMyGround Control Panel</p>
+
+    <div class="alert-error" *ngIf="error">
+      <i class="bi bi-exclamation-circle me-2"></i>{{ error }}
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="field-group">
+        <label>Username</label>
+        <div class="input-wrap">
+          <i class="bi bi-person"></i>
+          <input type="text" formControlName="username" placeholder="Enter username" class="field-input" />
+        </div>
+        <div class="field-error" *ngIf="form.get('username')?.touched && form.get('username')?.errors?.['required']">Username is required</div>
+      </div>
+
+      <div class="field-group">
+        <label>Password</label>
+        <div class="input-wrap">
+          <i class="bi bi-lock"></i>
+          <input type="password" formControlName="password" placeholder="Enter password" class="field-input" />
+        </div>
+        <div class="field-error" *ngIf="form.get('password')?.touched && form.get('password')?.errors?.['required']">Password is required</div>
+      </div>
+
+      <button type="submit" class="btn-primary-custom w-100 login-btn" [disabled]="loading">
+        <span *ngIf="!loading"><i class="bi bi-shield-lock me-2"></i>Login</span>
+        <span *ngIf="loading"><i class="bi bi-arrow-repeat spin me-2"></i>Authenticating...</span>
+      </button>
+    </form>
+
+    <p class="hint-text">Hint: admin / admin123</p>
+  </div>
+</div>

@@ -1,0 +1,109 @@
+.footer {
+  background: #0f1923;
+  color: rgba(255,255,255,0.8);
+  margin-top: auto;
+}
+
+.footer-top { padding: 60px 0 40px; }
+
+.footer-brand {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: #fff;
+  margin-bottom: 14px;
+  i { color: #198754; }
+}
+
+.footer-desc {
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 20px;
+  max-width: 300px;
+}
+
+.social-links { display: flex; gap: 10px; }
+
+.social-btn {
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 10px;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.3s;
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.8);
+  &:hover { transform: translateY(-3px); color: #fff; }
+  &.whatsapp:hover { background: #25d366; }
+  &.instagram:hover { background: linear-gradient(135deg,#f58529,#dd2a7b,#8134af); }
+  &.facebook:hover { background: #1877f2; }
+  &.twitter:hover { background: #000; }
+}
+
+.footer-heading {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  color: #fff;
+  font-size: 0.95rem;
+  margin-bottom: 16px;
+  position: relative;
+  padding-bottom: 10px;
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 30px; height: 2px;
+    background: #198754;
+    border-radius: 2px;
+  }
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0; margin: 0;
+  li { margin-bottom: 8px; }
+  a {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-size: 0.88rem;
+    transition: all 0.25s;
+    &:hover { color: #198754; padding-left: 4px; }
+  }
+}
+
+.contact-info { margin-bottom: 16px; }
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.7);
+  i { color: #198754; font-size: 0.9rem; width: 16px; }
+}
+
+.whatsapp-cta {
+  display: inline-flex;
+  align-items: center;
+  background: #25d366;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 600;
+  transition: all 0.3s;
+  &:hover { background: #1aab54; transform: translateY(-2px); color: #fff; }
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 20px 0;
+  p {
+    margin: 0;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.4);
+  }
+}

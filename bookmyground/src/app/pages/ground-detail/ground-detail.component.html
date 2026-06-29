@@ -1,0 +1,139 @@
+<div class="page-enter">
+
+<!-- Not Found -->
+<div class="not-found-wrap" *ngIf="notFound">
+  <i class="bi bi-exclamation-triangle"></i>
+  <h3>Ground Not Found</h3>
+  <a routerLink="/grounds" class="btn-primary-custom mt-3">Browse Grounds</a>
+</div>
+
+<!-- Ground Detail -->
+<div *ngIf="ground">
+
+  <!-- Hero Image -->
+  <div class="detail-hero">
+    <img [src]="ground.image" [alt]="ground.name" class="detail-hero-img" />
+    <div class="detail-hero-overlay"></div>
+    <div class="container detail-hero-content">
+      <a routerLink="/grounds" class="back-btn"><i class="bi bi-arrow-left me-1"></i>Back to Grounds</a>
+      <div class="d-flex flex-wrap align-items-center gap-3 mt-3">
+        <span class="avail-pill" [class.available]="ground.available" [class.unavailable]="!ground.available">
+          <i class="bi" [class.bi-check-circle-fill]="ground.available" [class.bi-x-circle-fill]="!ground.available"></i>
+          {{ ground.available ? 'Available' : 'Unavailable' }}
+        </span>
+      </div>
+      <h1 class="detail-title">{{ ground.name }}</h1>
+      <div class="detail-location"><i class="bi bi-geo-alt-fill me-1"></i>{{ ground.address }}, {{ ground.city }}</div>
+    </div>
+  </div>
+
+  <div class="container detail-container">
+    <div class="row g-5">
+
+      <!-- Left Content -->
+      <div class="col-lg-8">
+
+        <!-- Info Cards Row -->
+        <div class="info-row">
+          <div class="info-chip"><i class="bi bi-star-fill text-warning"></i> {{ ground.rating }} Rating</div>
+          <div class="info-chip"><i class="bi bi-clock text-primary"></i> {{ ground.openingTime }} – {{ ground.closingTime }}</div>
+          <div class="info-chip"><i class="bi bi-currency-rupee text-success"></i> {{ ground.pricePerHour }}/hr</div>
+        </div>
+
+        <!-- Description -->
+        <div class="detail-section">
+          <h4 class="detail-section-title"><i class="bi bi-info-circle me-2"></i>About This Ground</h4>
+          <p class="detail-desc">{{ ground.description }}</p>
+        </div>
+
+        <!-- Facilities -->
+        <div class="detail-section">
+          <h4 class="detail-section-title"><i class="bi bi-grid-3x3-gap me-2"></i>Facilities</h4>
+          <div class="facilities-grid">
+            <div class="facility-item" *ngFor="let f of ground.facilities">
+              <div class="facility-icon-wrap">
+                <i class="bi" [class]="facilityIcons[f] || 'bi-check-circle-fill'"></i>
+              </div>
+              <span>{{ f }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Timings -->
+        <div class="detail-section">
+          <h4 class="detail-section-title"><i class="bi bi-clock me-2"></i>Timings</h4>
+          <div class="timing-card">
+            <div class="timing-item">
+              <i class="bi bi-sunrise"></i>
+              <div><div class="timing-label">Opening Time</div><div class="timing-val">{{ ground.openingTime }}</div></div>
+            </div>
+            <div class="timing-divider"></div>
+            <div class="timing-item">
+              <i class="bi bi-sunset"></i>
+              <div><div class="timing-label">Closing Time</div><div class="timing-val">{{ ground.closingTime }}</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Map Placeholder -->
+        <div class="detail-section">
+          <h4 class="detail-section-title"><i class="bi bi-map me-2"></i>Location</h4>
+          <div class="map-placeholder">
+            <i class="bi bi-geo-alt-fill"></i>
+            <div>
+              <div class="map-address">{{ ground.address }}</div>
+              <div class="map-city">{{ ground.city }}</div>
+            </div>
+            <a [href]="'https://maps.google.com/?q=' + ground.name + ' ' + ground.city" target="_blank" class="btn-outline-custom ms-auto">
+              <i class="bi bi-box-arrow-up-right me-1"></i>Open Map
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right: Sticky Booking Card -->
+      <div class="col-lg-4">
+        <div class="booking-card">
+          <div class="booking-card-header">
+            <div class="price-display">
+              <span class="currency">₹</span>
+              <span class="amount">{{ ground.pricePerHour | number }}</span>
+              <span class="per">/hour</span>
+            </div>
+            <div class="rating-row mt-1">
+              <i class="bi bi-star-fill" *ngFor="let s of stars"></i>
+              <span class="ms-1">{{ ground.rating }}</span>
+            </div>
+          </div>
+
+          <div class="booking-card-body">
+            <div class="detail-row"><i class="bi bi-geo-alt"></i><span>{{ ground.city }}</span></div>
+            <div class="detail-row"><i class="bi bi-clock"></i><span>{{ ground.openingTime }} – {{ ground.closingTime }}</span></div>
+            <div class="detail-row"><i class="bi bi-people"></i><span>2 – 22 players</span></div>
+            <div class="facilities-mini">
+              <span class="fac-mini" *ngFor="let f of ground.facilities.slice(0,6)">
+                <i class="bi" [class]="facilityIcons[f] || 'bi-check'"></i> {{ f }}
+              </span>
+            </div>
+
+            <button (click)="openBooking()" class="btn-primary-custom w-100 book-btn" [disabled]="!ground.available">
+              <i class="bi bi-calendar-check me-2"></i>
+              {{ ground.available ? 'Book Now' : 'Not Available' }}
+            </button>
+
+            <a href="https://wa.me/919999999999" target="_blank" class="whatsapp-btn">
+              <i class="bi bi-whatsapp me-2"></i>Enquire on WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+</div>
+
+<app-booking-modal [ground]="ground" [visible]="showModal" (close)="closeModal()" />

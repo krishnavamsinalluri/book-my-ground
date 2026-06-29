@@ -1,0 +1,106 @@
+<div class="page-enter">
+
+  <!-- Hero -->
+  <div class="contact-hero">
+    <div class="contact-hero-overlay"></div>
+    <div class="container position-relative text-center">
+      <span class="section-badge">Contact Us</span>
+      <h1 class="contact-hero-title">Get In <span>Touch</span></h1>
+      <p class="contact-hero-sub">Have questions or need help? We're here for you 24/7.</p>
+    </div>
+  </div>
+
+  <section class="section-pad">
+    <div class="container">
+      <div class="row g-5 align-items-start">
+
+        <!-- Contact Info -->
+        <div class="col-lg-5">
+          <h3 class="contact-info-title">Let's <span>Talk</span></h3>
+          <p class="contact-info-sub">Reach out to us via any of the channels below and we'll get back to you as soon as possible.</p>
+
+          <div class="contact-cards">
+            <div class="contact-info-card">
+              <div class="contact-icon whatsapp"><i class="bi bi-whatsapp"></i></div>
+              <div>
+                <div class="contact-label">WhatsApp</div>
+                <a href="https://wa.me/919999999999" target="_blank" class="contact-val">+91 99999 99999</a>
+              </div>
+            </div>
+            <div class="contact-info-card">
+              <div class="contact-icon email"><i class="bi bi-envelope-fill"></i></div>
+              <div>
+                <div class="contact-label">Email</div>
+                <a href="mailto:hello@bookmyground.in" class="contact-val">hello&#64;bookmyground.in</a>
+              </div>
+            </div>
+            <div class="contact-info-card">
+              <div class="contact-icon phone"><i class="bi bi-telephone-fill"></i></div>
+              <div>
+                <div class="contact-label">Phone</div>
+                <a href="tel:+919999999999" class="contact-val">+91 99999 99999</a>
+              </div>
+            </div>
+            <div class="contact-info-card">
+              <div class="contact-icon location"><i class="bi bi-geo-alt-fill"></i></div>
+              <div>
+                <div class="contact-label">Office</div>
+                <div class="contact-val">Mumbai, Maharashtra, India</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Social -->
+          <div class="social-row">
+            <a href="https://wa.me/919999999999" target="_blank" class="social-chip whatsapp"><i class="bi bi-whatsapp me-1"></i>WhatsApp</a>
+            <a href="#" class="social-chip instagram"><i class="bi bi-instagram me-1"></i>Instagram</a>
+            <a href="#" class="social-chip facebook"><i class="bi bi-facebook me-1"></i>Facebook</a>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="col-lg-7">
+          <div class="contact-form-card">
+            <h4 class="form-card-title">Send us a Message</h4>
+
+            <div class="success-msg" *ngIf="sent">
+              <i class="bi bi-check-circle-fill me-2"></i>Message sent! We'll get back to you shortly.
+            </div>
+
+            <form [formGroup]="form" (ngSubmit)="submit()" *ngIf="!sent">
+              <div class="row g-3">
+                <div class="col-sm-6">
+                  <label class="form-label-custom">Full Name *</label>
+                  <input type="text" formControlName="name" class="form-control-modern w-100" placeholder="Your name" />
+                  <div class="field-error" *ngIf="form.get('name')?.touched && form.get('name')?.errors?.['required']">Name is required</div>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label-custom">Phone *</label>
+                  <input type="tel" formControlName="phone" class="form-control-modern w-100" placeholder="10-digit number" maxlength="10" />
+                  <div class="field-error" *ngIf="form.get('phone')?.touched && form.get('phone')?.errors?.['pattern']">Enter valid phone number</div>
+                </div>
+                <div class="col-12">
+                  <label class="form-label-custom">Email *</label>
+                  <input type="email" formControlName="email" class="form-control-modern w-100" placeholder="you@example.com" />
+                  <div class="field-error" *ngIf="form.get('email')?.touched && form.get('email')?.errors?.['email']">Enter valid email</div>
+                </div>
+                <div class="col-12">
+                  <label class="form-label-custom">Message *</label>
+                  <textarea formControlName="message" class="form-control-modern w-100" rows="5" placeholder="How can we help you?"></textarea>
+                  <div class="field-error" *ngIf="form.get('message')?.touched && form.get('message')?.errors?.['minlength']">Minimum 10 characters</div>
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn-primary-custom send-btn">
+                    <i class="bi bi-send me-2"></i>Send Message
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</div>
